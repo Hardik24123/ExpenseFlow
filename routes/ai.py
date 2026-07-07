@@ -8,8 +8,8 @@ from PIL import Image
 from openai import OpenAI
 from google.cloud.firestore_v1.base_query import FieldFilter
 
-# Ensure this path is correct for your system if on Windows!
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+if os.name == "nt":
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 ai_bp = Blueprint('ai', __name__)
 
