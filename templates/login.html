@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center align-items-center" style="min-height: 80vh;" data-aos="zoom-in-up">
+    <div class="col-12 col-md-6 col-lg-4 position-relative">
+        <div class="glass-card p-5 bg-white position-relative z-1 shadow-lg" style="border-radius: 1.5rem;">
+            <div class="text-center mb-4">
+                <div class="bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3 shadow-sm" style="width: 70px; height: 70px;">
+                    <i class="fa-solid fa-bolt fa-2xl"></i>
+                </div>
+                <h3 class="fw-bolder text-dark mb-1">Welcome Back</h3>
+                <p class="text-muted fw-medium small">Sign in to manage your money</p>
+            </div>
+            
+            <form id="loginForm">
+                <div class="mb-3">
+                    <label class="form-label small fw-bold text-muted mb-2">Email Address</label>
+                    <input type="email" class="form-control form-control-lg rounded-4 bg-light border-0 px-4 py-3 shadow-none fw-medium" id="emailInput" placeholder="name@example.com" required>
+                </div>
+                <div class="mb-4">
+                    <label class="form-label small fw-bold text-muted mb-2 d-flex justify-content-between">
+                        Password
+                        <a href="#" class="text-decoration-none text-primary opacity-75 hover-lift transition-all">Forgot?</a>
+                    </label>
+                    <input type="password" class="form-control form-control-lg rounded-4 bg-light border-0 px-4 py-3 shadow-none fw-medium" id="passwordInput" placeholder="••••••••" required>
+                </div>
+                <div class="d-grid gap-2 mb-4 mt-2">
+                    <button type="submit" class="btn btn-custom grad-primary btn-lg shadow-lg hover-lift">Sign In</button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-4 pt-2 border-top border-light">
+                <p class="small text-muted fw-medium mb-0 mt-3">Don't have an account? <a href="/register" class="text-primary fw-bold text-decoration-none border-bottom border-primary border-2 pb-1 transition-all hover-lift d-inline-block ms-1">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

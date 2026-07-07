@@ -1,0 +1,12 @@
+# Environment variables
+.env
+
+# Firebase service account
+firebase/serviceAccountKey.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/

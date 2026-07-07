@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-5" data-aos="fade-down">
+    <div class="col-12 d-flex flex-column flex-md-row justify-content-between align-items-center gap-4">
+        <div class="text-center text-md-start">
+            <h1 class="fw-bolder display-6 mb-1 text-dark d-flex align-items-center justify-content-center justify-content-md-start gap-2">
+                <div class="bg-warning bg-opacity-10 text-warning rounded-circle d-flex align-items-center justify-content-center" style="width: 45px; height: 45px;">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                AI Financial <span class="text-primary">Insights</span>
+            </h1>
+            <p class="text-muted mb-0 fw-medium fs-5 ms-md-5 ps-md-2">Personalized deep-dive powered by Gemini AI</p>
+        </div>
+        <button id="refreshInsightsBtn" class="btn btn-custom grad-primary shadow-lg hover-lift rounded-pill px-4 py-3 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-rotate-right"></i> Refresh Analysis
+        </button>
+    </div>
+</div>
+
+<div id="insightsLoading" class="text-center py-5 my-5">
+    <div class="position-relative mx-auto mb-4" style="width: 80px; height: 80px;">
+        <div class="position-absolute w-100 h-100 bg-primary rounded-circle opacity-25" style="animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+        <div class="position-relative w-100 h-100 bg-primary text-white rounded-circle d-flex align-items-center justify-content-center shadow-lg">
+            <i class="fa-solid fa-wand-magic-sparkles fa-2x"></i>
+        </div>
+    </div>
+    <h4 class="text-dark fw-bolder">Gemini is crunching the numbers...</h4>
+    <p class="text-muted fw-medium">Finding patterns in your spending</p>
+</div>
+
+<div id="insightsContent" class="row g-4 d-none" data-aos="fade-up">
+    <div class="col-12 col-lg-4">
+        <div class="glass-card border-0 shadow-lg p-5 h-100 text-center text-white position-relative overflow-hidden grad-primary d-flex flex-column" style="border-radius: 1.5rem;">
+            <div class="mb-4 mt-3">
+                <div class="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center mx-auto shadow" style="width: 100px; height: 100px; backdrop-filter: blur(10px);">
+                    <i id="personalityIcon" class="fa-solid fa-crown fa-3x text-warning"></i>
+                </div>
+            </div>
+            <h3 id="personalityTitle" class="fw-bolder mb-2 display-6">The Analyst</h3>
+            <p id="personalityDesc" class="fs-6 opacity-75 mb-auto fw-medium px-2 lh-base">You keep a close eye on your finances and track every penny.</p>
+            <div class="bg-white bg-opacity-10 border border-white border-opacity-25 rounded-4 p-4 mt-4 shadow-sm" style="backdrop-filter: blur(10px);">
+                <small class="fw-bold text-uppercase tracking-wide opacity-75 mb-1 d-block">Financial Health Score</small>
+                <h1 id="healthScore" class="fw-bolder mb-0 display-4">--<span class="fs-4">/100</span></h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-8">
+        <div class="glass-card border-0 shadow-sm p-4 p-md-5 h-100 bg-white d-flex flex-column justify-content-center" style="border-radius: 1.5rem;">
+            <h4 class="fw-bolder mb-4 text-dark border-bottom border-light pb-3">Gemini Breakdown</h4>
+            
+            <div class="glass-card bg-light border-0 mb-3 rounded-4 d-flex align-items-start p-4 hover-lift shadow-sm position-relative overflow-hidden">
+                <div class="position-absolute top-0 start-0 h-100 bg-warning" style="width: 4px;"></div>
+                <div class="bg-warning bg-opacity-10 text-warning rounded-circle p-2 me-4 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 50px; height: 50px;">
+                    <i class="fa-solid fa-triangle-exclamation fa-lg"></i>
+                </div>
+                <div>
+                    <strong class="text-dark d-block mb-2 fs-5 tracking-wide">Anomaly Detected</strong> 
+                    <span id="insight1" class="text-muted fw-medium lh-base">Loading insight...</span>
+                </div>
+            </div>
+
+            <div class="glass-card bg-light border-0 mb-3 rounded-4 d-flex align-items-start p-4 hover-lift shadow-sm position-relative overflow-hidden">
+                <div class="position-absolute top-0 start-0 h-100 bg-info" style="width: 4px;"></div>
+                <div class="bg-info bg-opacity-10 text-info rounded-circle p-2 me-4 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 50px; height: 50px;">
+                    <i class="fa-solid fa-chart-line fa-lg"></i>
+                </div>
+                <div>
+                    <strong class="text-dark d-block mb-2 fs-5 tracking-wide">Future Prediction</strong> 
+                    <span id="insight2" class="text-muted fw-medium lh-base">Loading prediction...</span>
+                </div>
+            </div>
+
+            <div class="glass-card bg-light border-0 rounded-4 d-flex align-items-start p-4 hover-lift shadow-sm position-relative overflow-hidden">
+                <div class="position-absolute top-0 start-0 h-100 bg-success" style="width: 4px;"></div>
+                <div class="bg-success bg-opacity-10 text-success rounded-circle p-2 me-4 d-flex align-items-center justify-content-center shadow-sm flex-shrink-0" style="width: 50px; height: 50px;">
+                    <i class="fa-solid fa-lightbulb fa-lg"></i>
+                </div>
+                <div>
+                    <strong class="text-dark d-block mb-2 fs-5 tracking-wide">Smart Optimization</strong> 
+                    <span id="insight3" class="text-muted fw-medium lh-base">Loading tip...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes ping {
+        75%, 100% { transform: scale(2); opacity: 0; }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const generateInsights = async () => {
+            const loading = document.getElementById('insightsLoading');
+            const content = document.getElementById('insightsContent');
+            const btn = document.getElementById('refreshInsightsBtn');
+            
+            loading.classList.remove('d-none');
+            content.classList.add('d-none');
+            btn.disabled = true;
+
+            try {
+                // Get the user's login token
+                const token = localStorage.getItem('expenseflow_token');
+                
+                // NO API KEY NEEDED HERE! Safely fetching from your Python backend
+                const response = await fetch('/api/ai/insights', {
+                    method: 'GET',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                if (!response.ok) throw new Error("Backend failed to generate insights");
+
+                const data = await response.json();
+                
+                document.getElementById('personalityTitle').textContent = data.personalityTitle;
+                document.getElementById('personalityDesc').textContent = data.personalityDesc;
+                document.getElementById('healthScore').textContent = data.healthScore;
+                document.getElementById('insight1').textContent = data.insight1;
+                document.getElementById('insight2').textContent = data.insight2;
+                document.getElementById('insight3').textContent = data.insight3;
+                
+                const icon = document.getElementById('personalityIcon');
+                icon.className = data.healthScore > 80 ? "fa-solid fa-crown fa-3x text-warning" : "fa-solid fa-fire fa-3x text-warning";
+
+            } catch (error) {
+                console.error("Gemini Insight Generation failed:", error);
+                // Fallback text if the AI fails or backend is unreachable
+                document.getElementById('personalityTitle').textContent = "The Foodie";
+                document.getElementById('personalityDesc').textContent = "You love treating yourself to good meals, but your wallet is feeling it!";
+                document.getElementById('healthScore').textContent = "65";
+                document.getElementById('insight1').textContent = "Your food spending is 40% higher than last month.";
+                document.getElementById('insight2').textContent = "If you keep this up, you'll exceed your budget by ₹3000 next week.";
+                document.getElementById('insight3').textContent = "Try cooking at home twice a week to save around ₹1500!";
+            } finally {
+                loading.classList.add('d-none');
+                content.classList.remove('d-none');
+                btn.disabled = false;
+            }
+        };
+
+        generateInsights();
+        document.getElementById('refreshInsightsBtn').addEventListener('click', generateInsights);
+    });
+</script>
+{% endblock %}

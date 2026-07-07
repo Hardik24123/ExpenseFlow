@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row align-items-center mb-5" data-aos="fade-down">
+    <div class="col-12 col-md-7 text-center text-md-start">
+        <h2 class="fw-bolder mb-1 display-6">Account Statement</h2>
+        <p class="text-muted mb-0 fw-medium">Comprehensive expense flow and balance tracking.</p>
+    </div>
+    <div class="col-12 col-md-5 d-flex justify-content-center justify-content-md-end gap-2 mt-3 mt-md-0">
+        <button class="btn btn-white border shadow-sm fw-bold rounded-pill px-3 hover-lift"><i class="fa-solid fa-download me-2 text-primary"></i>.CSV</button>
+        <button class="btn btn-white border shadow-sm fw-bold rounded-pill px-3 hover-lift"><i class="fa-solid fa-file-pdf me-2 text-danger"></i>.PDF</button>
+    </div>
+</div>
+
+<div class="glass-card bg-white p-0 overflow-hidden shadow-sm border-0" style="border-radius: 1rem;" data-aos="fade-up">
+    <div class="table-responsive">
+        <table class="table mb-0 align-middle table-hover text-nowrap">
+            <thead class="bg-light border-bottom border-secondary border-opacity-10">
+                <tr>
+                    <th class="py-3 px-4 text-muted fw-bold text-uppercase tracking-wide" style="font-size: 0.75rem; letter-spacing: 1px;">Date</th>
+                    <th class="py-3 text-muted fw-bold text-uppercase tracking-wide" style="font-size: 0.75rem; letter-spacing: 1px;">Transaction Details</th>
+                    <th class="py-3 text-muted fw-bold text-uppercase tracking-wide" style="font-size: 0.75rem; letter-spacing: 1px;">Paid By</th>
+                    <th class="py-3 text-end px-4 text-muted fw-bold text-uppercase tracking-wide" style="font-size: 0.75rem; letter-spacing: 1px;">Net Amount</th>
+                </tr>
+            </thead>
+            <tbody class="border-top-0" id="timelineTableBody">
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

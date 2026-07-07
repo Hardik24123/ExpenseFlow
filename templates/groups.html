@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row align-items-center mb-5" data-aos="fade-down">
+    <div class="col-12 col-md-7 text-center text-md-start">
+        <h2 class="fw-bolder mb-1 display-6">Cost Allocation Squads</h2>
+        <p class="text-muted mb-0 fw-medium">Manage shared entities and settle your debts.</p>
+    </div>
+    <div class="col-12 col-md-5 d-flex justify-content-center justify-content-md-end gap-3 mt-4 mt-md-0">
+        <button class="btn btn-success fw-bold rounded-pill px-4 shadow-sm hover-lift d-flex align-items-center gap-2" data-bs-toggle="modal" data-bs-target="#settleDebtModal">
+            <i class="fa-solid fa-money-bill-transfer"></i> Reconcile Debts
+        </button>
+        <button class="btn btn-custom grad-primary rounded-pill px-4 shadow-sm hover-lift" data-bs-toggle="modal" data-bs-target="#createGroupModal">
+            <i class="fa-solid fa-plus"></i> New Squad
+        </button>
+    </div>
+</div>
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="dynamicGroupsContainer" data-aos="fade-up">
+    <div class="col-12 text-center text-primary py-5 w-100">
+        <div class="spinner-border spinner-border-sm mb-2" role="status"></div>
+        <p class="fw-semibold text-muted">Retrieving network nodes...</p>
+    </div>
+</div>
+
+<div class="modal fade" id="settleDebtModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card border-0 shadow-lg">
+            <div class="modal-header border-bottom pb-3 px-4 bg-success bg-opacity-10">
+                <h5 class="modal-title fw-bolder text-success"><i class="fa-solid fa-handshake me-2"></i>Settle Outstanding Balance</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body px-4 py-4">
+                <div id="settlementStatusAlert" class="alert alert-info border-0 rounded-4 mb-4 d-none">
+                    <i class="fa-solid fa-circle-info me-2"></i> Analyzing your net positions...
+                </div>
+
+                <form id="settlementForm">
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Select Recipient to Pay</label>
+                        <select id="settleRecipient" class="form-select form-select-lg rounded-3 bg-light border-0 fs-6 shadow-sm" required disabled>
+                            <option value="">Calculating balances...</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Payment Amount (₹)</label>
+                        <div class="input-group input-group-lg shadow-sm rounded-3 overflow-hidden">
+                            <span class="input-group-text bg-light border-0 text-muted fs-6">₹</span>
+                            <input type="number" id="settleAmount" class="form-control bg-light border-0 fs-6" placeholder="0.00" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted"><i class="fa-solid fa-image me-1"></i>Upload Proof (Screenshot)</label>
+                        <input type="file" id="settleProofImage" class="form-control bg-light border-0 shadow-sm" accept="image/*" required>
+                        <small class="text-muted mt-1 d-block">Attach a screenshot of your transfer.</small>
+                    </div>
+                    <button type="submit" id="settleSubmitBtn" class="btn btn-success w-100 fw-bolder rounded-pill py-3 shadow-sm hover-lift" disabled>Confirm Transfer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createGroupModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass-card border-0 shadow-lg">
+            <div class="modal-header border-bottom pb-3 px-4 bg-primary bg-opacity-10">
+                <h5 class="modal-title fw-bolder text-primary">Provision New Squad</h5>
+                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body px-4 py-4">
+                <form id="createGroupForm">
+                    <div class="mb-3">
+                        <label class="form-label small fw-bold text-muted">Squad Name</label>
+                        <input type="text" id="groupName" class="form-control form-control-lg rounded-3 bg-light border-0 fs-6" placeholder="e.g. Goa Trip 2026" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label small fw-bold text-muted">Member Emails/UIDs (Comma separated)</label>
+                        <textarea id="groupMembers" class="form-control rounded-3 bg-light border-0 fs-6" rows="2" placeholder="user_1, user_2"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-custom grad-primary w-100 rounded-pill py-3 fw-bold shadow-sm">Initialize Squad</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
